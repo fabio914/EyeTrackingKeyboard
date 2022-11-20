@@ -6,7 +6,7 @@ This is a simple prototype of a virtual keyboard that allows users to type on it
 
 <a href="https://youtu.be/F_BDJ5TxftQ"><img src="Images/video.jpg" width="400"/></a>
 
-<a href="https://www.youtube.com/shorts/UP1_-Ttc7CA"><img scr="Images/video2.jpg" width="300"/></a>
+<a href="https://www.youtube.com/shorts/UP1_-Ttc7CA"><img src="Images/video2.jpg" width="300"/></a>
 
 ## Screenshots
 
