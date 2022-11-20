@@ -15,7 +15,9 @@ public class EyeTrackingKeyboard : MonoBehaviour {
     private KeyScript[] keys;
     private KeyScript? lastSelectedKey = null;
     private float currentSelectionTime = 0;
-    private bool isShiftEnabled = false;
+
+    private bool isUsingUppercase = false;
+    private bool isUsingSecondary = false;
 
     private void ClearSelection() {
         foreach (KeyScript key in keys) {
@@ -23,17 +25,17 @@ public class EyeTrackingKeyboard : MonoBehaviour {
         }
     }
 
-    private void UseUppercase() {
-        this.isShiftEnabled = true;
+    private void SetUseSecondary(bool useSecondary) {
+        this.isUsingSecondary = useSecondary;
         foreach (KeyScript key in keys) {
-            key.UseUppercase();
+            key.SetUseSecondary(useSecondary);
         }
     }
 
-    private void UseLowercase() {
-        this.isShiftEnabled = false;
+    private void SetUseUppercase(bool useUppercase) {
+        this.isUsingUppercase = useUppercase;
         foreach (KeyScript key in keys) {
-            key.UseLowercase();
+            key.SetUseUppercase(useUppercase);
         }
     }
 
@@ -42,11 +44,12 @@ public class EyeTrackingKeyboard : MonoBehaviour {
         keyboardMesh.GetComponent<Renderer>().material.color = new Color(0.4f, 0.4f, 0.4f, 0.25f);
         outputTextComponent.text = "";
         ClearSelection();
-        UseLowercase();
+        SetUseUppercase(false);
+        SetUseSecondary(false);
     }
 
     void Update() {
-        gameObject.transform.position = new Vector3(gameObject.transform.position.x, eyeTransform.position.y - 0.2f, gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, eyeTransform.position.y - 0.1f, gameObject.transform.position.z);
 
         if (lastSelectedKey != null) {
             lastSelectedKey.SetSelected(false);
@@ -73,19 +76,26 @@ public class EyeTrackingKeyboard : MonoBehaviour {
                                 this.outputString = outputString.Remove(outputString.Length - 1, 1);
                             }
                         } else if (key.keyCharacter == "Shift") {
-                            if (isShiftEnabled) {
-                                UseLowercase();
-                            } else {
-                                UseUppercase();
-                            }
+                            SetUseUppercase(!this.isUsingUppercase);
                         } else if (key.keyCharacter == "Enter") {
                             this.outputString += "\n";
+                        } else if (key.keyCharacter == "123") {
+                            SetUseSecondary(!this.isUsingSecondary);
                         } else {
-                            if (isShiftEnabled) {
-                                this.outputString += key.uppercaseKeyCharacter;
-                                UseLowercase();
+                            if (this.isUsingUppercase) {
+                                if (this.isUsingSecondary) {
+                                    this.outputString += key.uppercaseSecondaryKeyCharacter;
+                                } else {
+                                    this.outputString += key.uppercaseKeyCharacter;
+                                }
+                                
+                                SetUseUppercase(false);
                             } else {
-                                this.outputString += key.keyCharacter;
+                                if (this.isUsingSecondary) {
+                                    this.outputString += key.secondaryKeyCharacter;
+                                } else {
+                                    this.outputString += key.keyCharacter;
+                                }
                             }
                         }
 
