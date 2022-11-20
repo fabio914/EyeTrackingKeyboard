@@ -10,6 +10,8 @@ This is a simple prototype of a virtual keyboard that allows users to type on it
 
 ## Screenshots
 
+<img src="Images/screenshot3.jpg" width="300"/>
+
 <img src="Images/screenshot1.jpg" width="300"/>
 
 <img src="Images/screenshot2.jpg" width="300"/>
