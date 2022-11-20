@@ -76,6 +76,8 @@ public class EyeTrackingKeyboard : MonoBehaviour {
                             } else {
                                 UseUppercase();
                             }
+                        } else if (key.keyCharacter == "Enter") {
+                            this.outputString += "\n";
                         } else {
                             if (isShiftEnabled) {
                                 this.outputString += key.uppercaseKeyCharacter;
