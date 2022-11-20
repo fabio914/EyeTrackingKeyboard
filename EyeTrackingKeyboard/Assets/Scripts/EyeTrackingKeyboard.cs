@@ -8,7 +8,7 @@ public class EyeTrackingKeyboard : MonoBehaviour {
     public TMP_Text outputTextComponent;
     public GameObject keyboardMesh;
     public GameObject keysParent;
-    public Transform keyForwardTransform;
+    public Transform eyeTransform;
     public float selectionTime = 0.5f;
 
     private string outputString = "";
@@ -46,12 +46,14 @@ public class EyeTrackingKeyboard : MonoBehaviour {
     }
 
     void Update() {
+        gameObject.transform.position = new Vector3(gameObject.transform.position.x, eyeTransform.position.y - 0.2f, gameObject.transform.position.z);
+
         if (lastSelectedKey != null) {
             lastSelectedKey.SetSelected(false);
         }
 
         RaycastHit hit;
-        Ray ray = new Ray(keyForwardTransform.position, keyForwardTransform.forward);
+        Ray ray = new Ray(eyeTransform.position, eyeTransform.forward);
 
         if (Physics.Raycast(ray, out hit, 10)) {
 
