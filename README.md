@@ -2,13 +2,31 @@
 
 This is a simple prototype of a virtual keyboard that allows users to type on it using the Quest Pro's eye tracking. In other words, you can type by only looking at the keys.
 
+## Videos
+
 <a href="https://youtu.be/F_BDJ5TxftQ"><img src="Images/video.jpg" width="400"/></a>
+
+<a href="https://www.youtube.com/shorts/UP1_-Ttc7CA"><img scr="Images/video2.jpg width="300"/></a>
+
+## Screenshots
+
+<img src="Images/screenshot1.jpg" width="300"/>
+
+<img src="Images/screenshot2.jpg" width="300"/>
 
 ## Requirements
 
  - Meta Quest Pro with Eye Tracking enabled.
  
  - [SideQuest](https://sidequestvr.com)
+
+## How to install?
+
+- Follow [these instructions](https://sidequestvr.com/setup-howto) to install SideQuest and setup your Meta Quest Pro for development.
+
+- [Download the latest APK](https://github.com/fabio914/EyeTrackingKeyboard/releases/latest/download/build.apk).
+
+- Connect your Meta Quest Pro to your computer, launch SideQuest and drag the APK to the top left corner of SideQuest to install it.
 
 ## How to build?
 
