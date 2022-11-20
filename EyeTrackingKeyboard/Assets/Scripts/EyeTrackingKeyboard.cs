@@ -15,10 +15,25 @@ public class EyeTrackingKeyboard : MonoBehaviour {
     private KeyScript[] keys;
     private KeyScript? lastSelectedKey = null;
     private float currentSelectionTime = 0;
+    private bool isShiftEnabled = false;
 
-    void ClearKeys() {
+    private void ClearSelection() {
         foreach (KeyScript key in keys) {
             key.SetSelected(false);
+        }
+    }
+
+    private void UseUppercase() {
+        this.isShiftEnabled = true;
+        foreach (KeyScript key in keys) {
+            key.UseUppercase();
+        }
+    }
+
+    private void UseLowercase() {
+        this.isShiftEnabled = false;
+        foreach (KeyScript key in keys) {
+            key.UseLowercase();
         }
     }
 
@@ -26,7 +41,8 @@ public class EyeTrackingKeyboard : MonoBehaviour {
         this.keys = keysParent.GetComponentsInChildren<KeyScript>();
         keyboardMesh.GetComponent<Renderer>().material.color = new Color(0.4f, 0.4f, 0.4f, 0.25f);
         outputTextComponent.text = "";
-        ClearKeys();
+        ClearSelection();
+        UseLowercase();
     }
 
     void Update() {
@@ -54,8 +70,19 @@ public class EyeTrackingKeyboard : MonoBehaviour {
                             if (!System.String.IsNullOrEmpty(this.outputString)) {
                                 this.outputString = outputString.Remove(outputString.Length - 1, 1);
                             }
+                        } else if (key.keyCharacter == "Shift") {
+                            if (isShiftEnabled) {
+                                UseLowercase();
+                            } else {
+                                UseUppercase();
+                            }
                         } else {
-                            this.outputString += key.keyCharacter;
+                            if (isShiftEnabled) {
+                                this.outputString += key.uppercaseKeyCharacter;
+                                UseLowercase();
+                            } else {
+                                this.outputString += key.keyCharacter;
+                            }
                         }
 
                         outputTextComponent.text = outputString;

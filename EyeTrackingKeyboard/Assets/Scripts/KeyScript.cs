@@ -5,12 +5,13 @@ using TMPro;
 
 public class KeyScript : MonoBehaviour {
     public string keyCharacter;
+    public string uppercaseKeyCharacter;
     public TMP_Text textComponent;
     public GameObject keyMesh;
     private bool isSelected = false;
 
     void Start() {
-        textComponent.text = keyCharacter;
+        UseLowercase();
         keyMesh.GetComponent<Renderer>().material.color = new Color(0, 0, 0, 1);
     }
 
@@ -25,5 +26,13 @@ public class KeyScript : MonoBehaviour {
         } else {
             keyMesh.GetComponent<Renderer>().material.color = new Color(0, 0, 0, 1);
         }
+    }
+
+    public void UseUppercase() {
+        textComponent.text = uppercaseKeyCharacter;
+    }
+
+    public void UseLowercase() {
+        textComponent.text = keyCharacter;
     }
 }
