@@ -30,6 +30,8 @@ This is a simple prototype of a virtual keyboard that allows users to type on it
 
 - Connect your Meta Quest Pro to your computer, launch SideQuest and drag the APK to the top left corner of SideQuest to install it.
 
+Alternatively, you can download and install the app directly from SideQuest [here](https://sidequestvr.com/app/11786/eye-tracking-keyboard-prototype).
+
 ## How to build?
 
  - Make sure you have Unity 2021.3 LTS installed (with Android Build support).
